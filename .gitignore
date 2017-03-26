@@ -1,0 +1,14 @@
+.DS_Store
+
+*~
+*.log
+*.sqlite
+
+.env
+/www/*.*
+/www/public
+/www/templates
+
+/build
+/coverage
+/node_modules

@@ -1,0 +1,5 @@
+www.dubnix.io {
+  redir https://dubnix.io{uri}
+}
+
+dubnix.io

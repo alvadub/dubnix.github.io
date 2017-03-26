@@ -1,0 +1,8 @@
+#!/bin/sh
+
+OPTIONS="-avzC --exclude-from exclude.txt"
+TRANSPORT='ssh -p 22'
+CONNECTION='user@hostname'
+REMOTE_PATH='/path/to/deploy'
+
+rsync $OPTIONS -e "$TRANSPORT" ./src/ $CONNECTION:$REMOTE_PATH
