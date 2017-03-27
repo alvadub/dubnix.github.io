@@ -1,22 +1,24 @@
 template(lang='pug')
   .Player(v-bind:class='state')
-    div(v-if='state === "closed"' v-html='innerHTML' v-on:click='open')
+    span(v-if='state === "closed"' v-html='innerHTML' v-on:click='open')
     div(v-else)
       .Player--title.flex
-        button.col(v-on:click='close')
+        button.col.btn(v-on:click='close')
           svg: use(xlink:href='#x-cancel')
         span.col {{title}}
       .Player--canvas(ref='player')
       .Player--controls.flex
-        button.col(v-on:click='stop' v-if='state !== "stopped"')
+        button.col.btn(v-on:click='stop' v-if='state !== "stopped"')
           svg: use(xlink:href='#x-stop')
-        button.col(v-on:click='toggle')
+        button.col.btn(v-on:click='toggle')
           svg(v-if='state === "playing"'): use(xlink:href='#x-pause')
           svg(v-if='state !== "playing"'): use(xlink:href='#x-play')
         span.col {{current}}/{{duration}}
 
 script.
   /* global WaveSurfer */
+
+  const TITLE = document.title;
 
   function formatTime(time) {
     return [
@@ -44,6 +46,14 @@ script.
       this.duration = formatTime(this.$refs.wavesurfer.getDuration());
       this.play();
     });
+
+    this.$refs.wavesurfer.on('finish', () => {
+      const offset = PLAYERS.indexOf(this);
+      const key = offset === PLAYERS.length - 1 ? 0 : offset + 1;
+
+      PLAYERS[key].open();
+      PLAYERS[key].play();
+    });
   }
 
   const PLAYERS = [];
@@ -70,27 +80,37 @@ script.
         }
       },
       pause() {
-        this.state = 'paused';
+        document.title = `${TITLE} - Playing "${this.title}" (paused)`;
 
         if (this.$refs.wavesurfer) {
           this.$refs.wavesurfer.pause();
         }
+
+        this.state = 'paused';
       },
       stop() {
-        this.state = 'stopped';
+        document.title = `${TITLE} - Playing "${this.title}" (stopped)`;
 
         if (this.$refs.wavesurfer) {
           this.$refs.wavesurfer.stop();
         }
+
+        this.state = 'stopped';
       },
       play() {
-        this.state = 'playing';
+        document.title = `${TITLE} - Now playing "${this.title}"`;
 
         if (this.$refs.wavesurfer) {
           this.$refs.wavesurfer.play();
         }
+
+        this.state = 'playing';
       },
-      open() {
+      open(e) {
+        e.preventDefault();
+
+        document.title = `${TITLE} - Loading "${this.title}"`;
+
         setTimeout(initPlayer.bind(this));
 
         PLAYERS.forEach((player) => {
@@ -102,12 +122,14 @@ script.
         this.state = 'stopped';
       },
       close() {
-        this.state = 'closed';
+        document.title = TITLE;
 
         if (this.$refs.wavesurfer) {
           this.$refs.wavesurfer.destroy();
           this.$refs.wavesurfer = null;
         }
+
+        this.state = 'closed';
       },
     },
   };

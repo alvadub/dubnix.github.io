@@ -71,38 +71,6 @@ a, button {
   }
 }
 
-button {
-  border: 0;
-  color: @GRAY;
-  cursor: pointer;
-  transition: all .3s;
-  padding: 0 (@SPACE / 2);
-  min-height: (@SPACE * 2);
-  background-color: @SILVER;
-  border-radius: 4px;
-  box-shadow: 0 0 2px rgba(0, 0, 0, .3);
-
-  svg {
-    fill: @GRAY;
-    width: @SPACE;
-    height: @SPACE;
-    transition: all .3s;
-
-    ~ span {
-      margin-left: (@SPACE / 2);
-    }
-  }
-
-  &:hover {
-    background-color: @BLUE;
-    color: #FFFFFF;
-
-    svg {
-      fill: #FFFFFF;
-    }
-  }
-}
-
 a {
   color: @TEAL;
   transition: all .3s;
@@ -196,6 +164,46 @@ a {
   }
 }
 
+.btn {
+  border: 0;
+  color: @GRAY;
+  cursor: pointer;
+  transition: all .3s;
+  padding: 0 (@SPACE / 2);
+  min-height: (@SPACE * 2);
+  background-color: @SILVER;
+  border-radius: 4px;
+  box-shadow: 0 0 2px rgba(0, 0, 0, .3);
+
+  svg {
+    fill: @GRAY;
+    width: @SPACE;
+    height: @SPACE;
+    transition: all .3s;
+
+    ~ span {
+      margin-left: (@SPACE / 2);
+    }
+  }
+
+  &:visited {
+    color: @GRAY;
+  }
+
+  &:hover {
+    background-color: @BLUE;
+    color: #FFFFFF;
+
+    svg {
+      fill: #FFFFFF;
+    }
+  }
+}
+
+.none {
+  text-decoration: none;
+}
+
 .right {
   float: right;
 }
@@ -204,6 +212,10 @@ a {
   &--title,
   &--controls {
     color: @GRAY;
+  }
+
+  & ~ .Player {
+    margin-top: (@SPACE / 2);
   }
 }
 
