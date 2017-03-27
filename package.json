@@ -2,18 +2,21 @@
   "name": "dubnix.io",
   "version": "1.0.0",
   "config": {
-    "dev": 3001
+    "dev": 3001,
+    "www": 8081
   },
   "scripts": {
     "dev": "yarn dev:server -- -s",
+    "dev:caddy": "yarn dev:server -- -P localhost:$npm_package_config_www -- caddy -port $npm_package_config_www",
     "dev:server": "tarima -dwp $npm_package_config_dev",
-    "dist": "tarima -fq",
-    "dist:ci": "tarima -fqe ci",
-    "dist:prod": "tarima -fqe prod",
-    "dist:stage": "tarima -fqe stage"
+    "dist": "tarima -fqe prod",
+    "dist:deploy": "yarn dist && ./bin/deploy"
   },
   "tarima": {
     "public": "build/www",
+    "watch": [
+      "Caddyfile"
+    ],
     "filter": [
       "!_*",
       "!**/_*",

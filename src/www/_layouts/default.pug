@@ -37,5 +37,17 @@ html
         ga('create', '#{UA_TOKEN}', 'auto');
         ga('send', 'pageview');
   body
-    block body
+    .container
+      .segment.push
+        nav.grid.wrapper
+          .col: a(href='/' class=(url === '/' ? 'here' : null)) Home
+          .col: a(href='/our-music' class=(url === '/our-music' ? 'here' : null)) Our music
+          .col: a(href='/who-we-are' class=(url === '/who-we-are' ? 'here' : null)) Who we are?
+
+      .segment.pop.push.white.slash
+        header.wrapper
+          h1.bungee DUB * NIX
+          h3 Work in progress...
+
+      block body
     block scripts
