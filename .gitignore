@@ -1,15 +1,12 @@
 .DS_Store
 
 *~
-*.mp3
 *.log
 *.sqlite
 
 .env
-/www/*.*
-/www/public
-/www/templates
 
 /build
 /coverage
 /node_modules
+/src/www/audio

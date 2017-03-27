@@ -9,10 +9,10 @@ block body
   .segment
     .wrapper
       p.pull Recently we added audio players as the following:
-      p.pull
-        button(data-play='audio/dubnix_reboot_pre.mp3' data-title='Reboot PRE')
-          <@svg "music">
-          span Play now: Reboot PRE
+      each x in [1,2,3]
+        p.pull
+          div(data-play='audio/dubnix_reboot_pre.mp3' data-title='Reboot PRE')
+            button <@svg "music">#[span Reboot PRE]
       p.pull This is a regular bunch of text. With a #[a(href='#') inline link] within.
       p.pull This is a regular bunch of text. With a #[a(href='#') inline link] within.
       ul.pull

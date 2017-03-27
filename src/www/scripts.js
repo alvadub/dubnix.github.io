@@ -6,33 +6,22 @@ _bundle: true
 
 import Player from '../_components/player.vue.pug';
 
-function setupPlayer(node, done) {
-  return (e) => {
-    e.preventDefault();
-
+Array.prototype.slice.call(document.querySelectorAll('[data-play]'))
+  .map((node) => {
     const div = document.createElement('div');
+
+    const innerHTML = node.innerHTML;
+    const dataSet = node.dataset;
 
     node.parentNode.insertBefore(div, node);
     node.parentNode.removeChild(node);
 
-    /* eslint-disable no-new */
-    new Player({
+    return new Player({
       el: div,
       data: () => ({
-        src: node.dataset.play,
-        title: node.dataset.title,
+        innerHTML,
+        src: dataSet.play,
+        title: dataSet.title,
       }),
     });
-
-    done();
-  };
-}
-
-Array.prototype.slice.call(document.querySelectorAll('button[data-play]'))
-  .forEach((node) => {
-    const cb = setupPlayer(node, () => {
-      node.removeEventListener('click', cb);
-    });
-
-    node.addEventListener('click', cb);
   });

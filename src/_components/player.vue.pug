@@ -1,14 +1,19 @@
 template(lang='pug')
-  .Player
-    .Player--title {{title}}
-    .Player--canvas(ref='player')
-    .Player--controls.flex
-      button.col(v-on:click='stop' v-if='state !== "stopped"')
-        svg: use(xlink:href='#x-stop')
-      button.col(v-on:click='toggle')
-        svg(v-if='state === "playing"'): use(xlink:href='#x-pause')
-        svg(v-if='state !== "playing"'): use(xlink:href='#x-play')
-      span.col {{current}}/{{duration}}
+  .Player(v-bind:class='state')
+    div(v-if='state === "closed"' v-html='innerHTML' v-on:click='open')
+    div(v-else)
+      .Player--title.flex
+        button.col(v-on:click='close')
+          svg: use(xlink:href='#x-cancel')
+        span.col {{title}}
+      .Player--canvas(ref='player')
+      .Player--controls.flex
+        button.col(v-on:click='stop' v-if='state !== "stopped"')
+          svg: use(xlink:href='#x-stop')
+        button.col(v-on:click='toggle')
+          svg(v-if='state === "playing"'): use(xlink:href='#x-pause')
+          svg(v-if='state !== "playing"'): use(xlink:href='#x-play')
+        span.col {{current}}/{{duration}}
 
 script.
   /* global WaveSurfer */
@@ -16,41 +21,44 @@ script.
   function formatTime(time) {
     return [
       Math.floor((time % 3600) / 60),
-      ('00' + Math.floor(time % 60)).slice(-2),
+      `00${Math.floor(time % 60)}`.slice(-2),
     ].join(':');
   };
 
-  const _players = [];
+  function initPlayer() {
+    this.$refs.wavesurfer = WaveSurfer.create({
+      container: this.$refs.player,
+      barWidth: 3,
+      cursorWidth: 0,
+      waveColor: '#DDDDDD',
+      progressColor: '#01FF70',
+    });
+
+    this.$refs.wavesurfer.load(this.src);
+
+    this.$refs.wavesurfer.on('audioprocess', () => {
+      this.current = formatTime(this.$refs.wavesurfer.getCurrentTime());
+    });
+
+    this.$refs.wavesurfer.on('ready', () => {
+      this.duration = formatTime(this.$refs.wavesurfer.getDuration());
+      this.play();
+    });
+  }
+
+  const PLAYERS = [];
 
   export default {
-    mounted() {
-      this._w = WaveSurfer.create({
-        container: this.$refs.player,
-        barWidth: 3,
-        cursorWidth: 0,
-        waveColor: '#DDDDDD',
-        progressColor: '#01FF70',
-      });
-
-      this._w.load(this.src);
-
-      this._w.on('audioprocess', () => {
-        this.current = formatTime(this._w.getCurrentTime());
-      });
-
-      this._w.on('ready', () => {
-        this.duration = formatTime(this._w.getDuration());
-        this.play();
-      });
-
-      _players.push(this);
+    created() {
+      PLAYERS.push(this);
     },
     data() {
       return {
         title: 'Audio',
-        state: 'stopped',
+        state: 'closed',
         current: '00:00',
         duration: '00:00',
+        innerHTML: '(inherited)',
       };
     },
     methods: {
@@ -63,16 +71,43 @@ script.
       },
       pause() {
         this.state = 'paused';
-        this._w.pause();
+
+        if (this.$refs.wavesurfer) {
+          this.$refs.wavesurfer.pause();
+        }
       },
       stop() {
         this.state = 'stopped';
-        this._w.stop();
+
+        if (this.$refs.wavesurfer) {
+          this.$refs.wavesurfer.stop();
+        }
       },
       play() {
-        _players.forEach(player => player.stop());
         this.state = 'playing';
-        this._w.play();
+
+        if (this.$refs.wavesurfer) {
+          this.$refs.wavesurfer.play();
+        }
+      },
+      open() {
+        setTimeout(initPlayer.bind(this));
+
+        PLAYERS.forEach((player) => {
+          if (player.state !== 'closed') {
+            player.close();
+          }
+        });
+
+        this.state = 'stopped';
+      },
+      close() {
+        this.state = 'closed';
+
+        if (this.$refs.wavesurfer) {
+          this.$refs.wavesurfer.destroy();
+          this.$refs.wavesurfer = null;
+        }
       },
     },
   };
