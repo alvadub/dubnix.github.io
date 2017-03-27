@@ -20,6 +20,8 @@ script.
     ].join(':');
   };
 
+  const _players = [];
+
   export default {
     mounted() {
       this._w = WaveSurfer.create({
@@ -40,6 +42,8 @@ script.
         this.duration = formatTime(this._w.getDuration());
         this.play();
       });
+
+      _players.push(this);
     },
     data() {
       return {
@@ -66,6 +70,7 @@ script.
         this._w.stop();
       },
       play() {
+        _players.forEach(player => player.stop());
         this.state = 'playing';
         this._w.play();
       },
