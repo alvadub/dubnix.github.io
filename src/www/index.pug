@@ -2,29 +2,6 @@
   ---
   title: HOME
   at: home
-  music:
-    - label: Classics
-      tracks:
-      - title: Chord
-        url: audio/dubnix_classics_chord.mp3
-      - title: Human being
-        url: audio/dubnix_classics_human-being.mp3
-      - title: Musical riot
-        url: audio/dubnix_classics_musical-riot.mp3
-    - label: Renewal
-      tracks:
-      - title: Long terms
-        url: audio/dubnix_renewal_longterms_pre.mp3
-      - title: Risky conditions
-        url: audio/dubnix_renewal_risky-conditions.mp3
-      - title: Trailing acts
-        url: audio/dubnix_renewal_trailing-acts.mp3
-      - title: Western dread
-        url: audio/dubnix_renewal_western-dread.mp3
-    - label: Reboot
-      tracks:
-        - title: Melodical
-          url: audio/dubnix_reboot_melodical_pre.mp3
   ---
 
 extend ../_layouts/default
@@ -32,15 +9,5 @@ extend ../_layouts/default
 block body
   .segment
     .wrapper
-      each group in music
-        h3.pull= group.label
-        each track in group.tracks
-          a.btn.none(href=track.url data-is-music=track.title) <@svg "music">#[span= track.title]
-
-      p.pull This is a regular bunch of text. With a #[a(href='#') inline link] within.
-      p.pull This is a regular bunch of text. With a #[a(href='#') inline link] within.
-      ul.pull
-        li This is a #[b list] item with a #[a(href='#') link].
-        li This is a #[i list] item with a #[a(href='#') link].
-        li This is a #[var list] item with a #[a(href='#') link].
-        li This is a #[code list] item with a #[a(href='#') link].
+      p.pull Email: #[a(href='mailto:info@dubnix.io') info@dubnix.io]
+      p.pull Soundcloud: #[a(href='//soundcloud.com/dubnix') soundcloud.com/dubnix]
