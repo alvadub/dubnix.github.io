@@ -16,7 +16,7 @@ template(lang='pug')
         span.col {{current}}/{{duration}}
 
 script.
-  /* global WaveSurfer */
+  /* global ga, WaveSurfer */
 
   const TITLE = document.title;
 
@@ -48,12 +48,20 @@ script.
     });
 
     this.$refs.wavesurfer.on('finish', () => {
+      doTrack('finish', this.title);
+
       const offset = PLAYERS.indexOf(this);
       const key = offset === PLAYERS.length - 1 ? 0 : offset + 1;
 
       PLAYERS[key].open();
       PLAYERS[key].play();
     });
+  }
+
+  function doTrack(e, title) {
+    if (ga) {
+      ga('send', 'event', 'player', e, 'track', title);
+    }
   }
 
   const PLAYERS = [];
@@ -98,6 +106,8 @@ script.
         this.state = 'stopped';
       },
       play() {
+        doTrack('play', this.title);
+
         document.title = `${TITLE} - Now playing "${this.title}"`;
 
         if (this.$refs.wavesurfer) {
@@ -107,7 +117,11 @@ script.
         this.state = 'playing';
       },
       open(e) {
-        e.preventDefault();
+        if (e) {
+          e.preventDefault();
+
+          doTrack('open', this.title);
+        }
 
         document.title = `${TITLE} - Loading "${this.title}"`;
 
