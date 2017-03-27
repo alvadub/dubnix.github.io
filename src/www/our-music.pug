@@ -1,6 +1,6 @@
 //-
   ---
-  url: /our-music
+  at: music
   ---
 
 extend _layouts/default
@@ -8,10 +8,6 @@ extend _layouts/default
 block body
   .segment
     .wrapper
-      dl
-        dt: h5 Contact
-        dd: a(href='mailto:info@dubnix.io') info@dubnix.io
-
-      dl
-        dt: h5 Soundcloud
-        dd: a(href='//soundcloud.com/dubnix') soundcloud.com/dubnix
+      h2.pull Our music
+      p.pull Email: #[a(href='mailto:info@dubnix.io') info@dubnix.io]
+      p.pull Soundcloud: #[a(href='//soundcloud.com/dubnix') soundcloud.com/dubnix]

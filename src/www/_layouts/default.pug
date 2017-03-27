@@ -40,9 +40,9 @@ html
     .container
       .segment.push
         nav.grid.wrapper
-          .col: a(href='/' class=(url === '/' ? 'here' : null)) Home
-          .col: a(href='/our-music' class=(url === '/our-music' ? 'here' : null)) Our music
-          .col: a(href='/who-we-are' class=(url === '/who-we-are' ? 'here' : null)) Who we are?
+          .col: a(href='/' class=(at === 'home' ? 'here' : null)) Home
+          .col: a(href='/our-music' class=(at === 'music' ? 'here' : null)) Our music
+          .col: a(href='/who-we-are' class=(at === 'about' ? 'here' : null)) Who we are?
 
       .segment.pop.push.white.slash
         header.wrapper

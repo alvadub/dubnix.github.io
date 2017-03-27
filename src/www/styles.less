@@ -106,20 +106,26 @@ button {
 }
 
 a {
+  color: @TEAL;
+  transition: all .3s;
+
   &:visited {
+    color: @TEAL;
   }
 
   &:hover {
+    color: @BLUE;
   }
 
   &.here {
-    color: red;
+    color: @FUCHSIA;
   }
 }
 
 ::-moz-selection {
   text-shadow: none;
-  background-color: @YELLOW;
+  color: @GRAY;
+  background-color: @SILVER;
 }
 
 ::selection {
@@ -149,7 +155,8 @@ a {
   }
 
   &.pop {
-    padding-top: (@SPACE * 10);
+    padding-top: (@SPACE * 2);
+    padding-bottom: (@SPACE * 2);
   }
 
   &.push {
@@ -178,7 +185,7 @@ a {
   list-style: none;
 }
 
-.pull {
+.pull ~ .pull {
   margin-top: @SPACE;
 }
 

@@ -1,6 +1,6 @@
 //-
   ---
-  url: /
+  at: home
   ---
 
 extend _layouts/default
@@ -8,4 +8,10 @@ extend _layouts/default
 block body
   .segment
     .wrapper
-      |OK
+      p.pull This is a regular bunch of text. With a #[a(href='#') inline link] within.
+      p.pull This is a regular bunch of text. With a #[a(href='#') inline link] within.
+      ul.pull
+        li This is a #[b list] item with a #[a(href='#') link].
+        li This is a #[i list] item with a #[a(href='#') link].
+        li This is a #[var list] item with a #[a(href='#') link].
+        li This is a #[code list] item with a #[a(href='#') link].
