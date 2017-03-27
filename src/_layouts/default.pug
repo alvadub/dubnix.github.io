@@ -37,6 +37,8 @@ html
         ga('create', '#{UA_TOKEN}', 'auto');
         ga('send', 'pageview');
   body
+    <@import "www/images/sprites.svg">
+
     .container
       .segment.push
         nav.grid.wrapper
@@ -50,4 +52,9 @@ html
           h3 Work in progress...
 
       block body
+
+    script(src='//cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/1.3.7/wavesurfer.min.js')
+    script(src='//cdnjs.cloudflare.com/ajax/libs/vue/2.2.5/vue.runtime.min.js')
+    script(src='scripts.js')
+
     block scripts

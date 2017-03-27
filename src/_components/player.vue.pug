@@ -1,0 +1,73 @@
+template(lang='pug')
+  .Player
+    .Player--title {{title}}
+    .Player--canvas(ref='player')
+    .Player--controls.flex
+      button.col(v-on:click='stop' v-if='state !== "stopped"')
+        svg: use(xlink:href='#x-stop')
+      button.col(v-on:click='toggle')
+        svg(v-if='state === "playing"'): use(xlink:href='#x-pause')
+        svg(v-if='state !== "playing"'): use(xlink:href='#x-play')
+      span.col {{current}}/{{duration}}
+
+script.
+  /* global WaveSurfer */
+
+  function formatTime(time) {
+    return [
+      Math.floor((time % 3600) / 60),
+      ('00' + Math.floor(time % 60)).slice(-2),
+    ].join(':');
+  };
+
+  export default {
+    mounted() {
+      this._w = WaveSurfer.create({
+        container: this.$refs.player,
+        barWidth: 3,
+        cursorWidth: 0,
+        waveColor: '#DDDDDD',
+        progressColor: '#01FF70',
+      });
+
+      this._w.load(this.src);
+
+      this._w.on('audioprocess', () => {
+        this.current = formatTime(this._w.getCurrentTime());
+      });
+
+      this._w.on('ready', () => {
+        this.duration = formatTime(this._w.getDuration());
+        this.play();
+      });
+    },
+    data() {
+      return {
+        title: 'Audio',
+        state: 'stopped',
+        current: '00:00',
+        duration: '00:00',
+      };
+    },
+    methods: {
+      toggle() {
+        if (this.state !== 'playing') {
+          this.play();
+        } else {
+          this.pause();
+        }
+      },
+      pause() {
+        this.state = 'paused';
+        this._w.pause();
+      },
+      stop() {
+        this.state = 'stopped';
+        this._w.stop();
+      },
+      play() {
+        this.state = 'playing';
+        this._w.play();
+      },
+    },
+  };

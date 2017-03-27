@@ -40,7 +40,7 @@
     ],
     "pluginOptions": {
       "talavera": {
-        "dest": "images"
+        "dest": "www/images"
       }
     },
     "bundleOptions": {
@@ -66,7 +66,8 @@
     "pug": "^2.0.0-beta11",
     "rollup": "^0.41.6",
     "talavera": "^0.2.1",
-    "tarima-cli": "^0.3.11"
+    "tarima-cli": "^0.3.11",
+    "vue-template-compiler": "^2.2.6"
   },
   "optionalDependencies": {
     "chokidar": "^1.6.1",

@@ -3,11 +3,16 @@
   at: home
   ---
 
-extend _layouts/default
+extend ../_layouts/default
 
 block body
   .segment
     .wrapper
+      p.pull Recently we added audio players as the following:
+      p.pull
+        button(data-play='audio/dubnix_reboot_pre.mp3' data-title='Reboot PRE')
+          <@svg "play">
+          span Play now: Reboot PRE
       p.pull This is a regular bunch of text. With a #[a(href='#') inline link] within.
       p.pull This is a regular bunch of text. With a #[a(href='#') inline link] within.
       ul.pull

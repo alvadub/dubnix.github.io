@@ -2,7 +2,7 @@
 
 @SPACE: 16px;
 
-@NAVY: #001f3f;
+@NAVY: #001F3F;
 @BLUE: #0074D9;
 @AQUA: #7FDBFF;
 @TEAL: #39CCCC;
@@ -12,7 +12,7 @@
 @YELLOW: #FFDC00;
 @ORANGE: #FF851B;
 @RED: #FF4136;
-@MAROON: #85144b;
+@MAROON: #85144B;
 @FUCHSIA: #F012BE;
 @PURPLE: #B10DC9;
 @BLACK: #111111;
@@ -60,48 +60,46 @@ p, li, a, button {
 a, button {
   position: relative;
 
-  &:focus {
+  &:focus, &:active {
     outline: none;
-  }
+    background-color: @TEAL;
+    color: #FFFFFF !important;
 
-  &:focus:before {
-    position: absolute;
-    content: ' ';
-    top: auto;
-    left: 0;
-    width: 100%;
-    height: 3px;
-    bottom: 0;
-    z-index: -1;
-    border-radius: 50%;
-
-    animation-name: floating;
-    animation-duration: 4s;
-    animation-iteration-count: infinite;
-  }
-
-  @keyframes floating {
-    0% { transform: translateY(0%); }
-    50% { transform: translateY(-3px); }
-    100% { transform: translateY(0%); }
+    svg {
+      fill: #FFFFFF;
+    }
   }
 }
 
 button {
   border: 0;
-  padding: 0 .4em;
+  color: @GRAY;
   cursor: pointer;
+  transition: all .3s;
+  padding: 0 (@SPACE / 2);
+  min-height: (@SPACE * 2);
+  background-color: @SILVER;
+  border-radius: 4px;
+  box-shadow: 0 0 2px rgba(0, 0, 0, .3);
 
-  &:focus:before {
-    bottom: -3px;
+  svg {
+    fill: @GRAY;
+    width: @SPACE;
+    height: @SPACE;
+    transition: all .3s;
+
+    ~ span {
+      margin-left: (@SPACE / 2);
+    }
   }
 
   &:hover {
-    text-shadow: none;
-  }
+    background-color: @BLUE;
+    color: #FFFFFF;
 
-  &:active {
-    border: 1px solid red;
+    svg {
+      fill: #FFFFFF;
+    }
   }
 }
 
@@ -154,15 +152,6 @@ a {
     }
   }
 
-  &.pop {
-    padding-top: (@SPACE * 2);
-    padding-bottom: (@SPACE * 2);
-  }
-
-  &.push {
-    margin-bottom: (@SPACE * 4);
-  }
-
   &.white:before {
     background-color: @YELLOW;
   }
@@ -189,13 +178,31 @@ a {
   margin-top: @SPACE;
 }
 
+.pop {
+  padding-top: (@SPACE * 2);
+  padding-bottom: (@SPACE * 2);
+}
+
+.push {
+  margin-bottom: (@SPACE * 4);
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+
+  > .col ~ .col {
+    margin-left: @SPACE;
+  }
+}
+
 @media screen and (min-width: @PAGE_WIDTH) {
   .grid {
     display: flex;
     align-items: center;
-  }
 
-  .col ~ .col {
-    margin-left: @SPACE;
+    > .col ~ .col {
+      margin-left: @SPACE;
+    }
   }
 }
