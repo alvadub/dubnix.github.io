@@ -59,7 +59,7 @@ script.
   }
 
   function doTrack(e, title) {
-    if (ga) {
+    if (typeof ga !== 'undefined') {
       ga('send', 'event', e, title);
     }
   }
@@ -69,9 +69,17 @@ script.
   export default {
     created() {
       PLAYERS.push(this);
+
+      const track = location.search.split('play=').pop();
+
+      if (track && this.src.indexOf(track) > -1) {
+        this.open();
+        this.play();
+      }
     },
     data() {
       return {
+        src: '',
         title: 'Audio',
         state: 'closed',
         current: '00:00',
@@ -110,6 +118,8 @@ script.
 
         document.title = `${TITLE} - Now playing "${this.title}"`;
 
+        history.replaceState(null, document.title, `/our-music?play=${this.src.split('/').pop()}`);
+
         if (this.$refs.wavesurfer) {
           this.$refs.wavesurfer.play();
         }
@@ -137,6 +147,8 @@ script.
       },
       close() {
         document.title = TITLE;
+
+        history.replaceState(null, document.title, '/our-music');
 
         if (this.$refs.wavesurfer) {
           this.$refs.wavesurfer.destroy();
