@@ -7,8 +7,8 @@
   },
   "scripts": {
     "dev": "yarn dev:server -- -s",
-    "dev:caddy": "yarn dev:server -- -P localhost:$npm_package_config_www -- caddy -port $npm_package_config_www",
-    "dev:server": "tarima -dwp $npm_package_config_dev",
+    "dev:caddy": "yarn dev:server -- proxy:localhost:$npm_package_config_www -- caddy -port $npm_package_config_www",
+    "dev:server": "tarima -L tarima-lr -wp $npm_package_config_dev",
     "dist": "tarima -fqe prod",
     "dist:deploy": "yarn dist && ./bin/deploy"
   },
@@ -31,9 +31,6 @@
     ],
     "ignoreFiles": [
       ".gitignore"
-    ],
-    "devPlugins": [
-      "tarima-lr"
     ],
     "plugins": [
       "talavera"
