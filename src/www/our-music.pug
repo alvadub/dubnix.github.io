@@ -31,6 +31,12 @@
     tracks:
     - title: Melodical
       url: audio/dubnix_reboot_melodical_pre.mp3
+    - title: Please stand by
+      url: audio/dubnix_reboot_please-stand-by_pre.mp3
+    - title: Dreamers
+      url: audio/dubnix_reboot_dreamers_pre.mp3
+    - title: Now
+      url: audio/dubnix_reboot_now_pre.mp3
   ---
 
 extend ../_layouts/default
@@ -38,6 +44,7 @@ extend ../_layouts/default
 block body
   .segment
     .wrapper
+      #app
       each group in music
         h3.pull= group.label
         each track in group.tracks

@@ -1,4 +1,4 @@
-template(lang='pug')
+template
   .Player(v-bind:class='state')
     span(v-if='state === "closed"' v-html='innerHTML' v-on:click='open')
     div(v-else)

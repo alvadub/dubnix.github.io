@@ -1,20 +1,17 @@
 {
   "name": "dubnix.io",
   "version": "1.0.0",
-  "config": {
-    "dev": 3001,
-    "www": 8081
-  },
   "scripts": {
-    "dev": "yarn dev:server -- -s",
-    "dev:caddy": "yarn dev:server -- proxy:localhost:$npm_package_config_www -- caddy -port $npm_package_config_www",
-    "dev:server": "tarima -L tarima-lr -wp $npm_package_config_dev",
-    "dist": "tarima -fqe prod",
-    "dist:deploy": "yarn dist && ./bin/deploy"
+    "dev": "npm run dev:server -- -de",
+    "dev:caddy": "npm run dev:server -- --proxy localhost:8081 -- caddy -port 8081",
+    "dev:server": "tarima watch -L tarima-lr -p 3001",
+    "dist": "tarima -fqe production",
+    "dist:deploy": "npm run dist && ./bin/deploy"
   },
   "tarima": {
+    "from": "src",
     "public": "build/www",
-    "watch": [
+    "watching": [
       "Caddyfile"
     ],
     "filter": [
@@ -57,17 +54,14 @@
   "main": "index.js",
   "license": "MIT",
   "devDependencies": {
-    "buble": "^0.15.2",
+    "buble": "^0.18.0",
     "less": "^2.7.2",
     "less-plugin-autoprefix": "^1.5.1",
     "pug": "^2.0.0-beta11",
-    "rollup": "^0.41.6",
-    "talavera": "^0.2.1",
-    "tarima-cli": "^0.3.11",
+    "rollup": "^0.53.2",
+    "talavera": "^0.5.0",
+    "tarima": "^4.0.1",
+    "tarima-lr": "^0.4.0",
     "vue-template-compiler": "^2.2.6"
-  },
-  "optionalDependencies": {
-    "chokidar": "^1.6.1",
-    "tarima-lr": "0.0.11"
   }
 }
