@@ -1,10 +1,12 @@
 /**
 ---
-_bundle: true
+$bundle: true
 ---
 */
 
 import Player from '../_components/player.vue.pug';
+
+/* global Vue */
 
 Array.prototype.slice.call(document.querySelectorAll('a[data-is-music]'))
   .map((node) => {
@@ -17,12 +19,16 @@ Array.prototype.slice.call(document.querySelectorAll('a[data-is-music]'))
     node.parentNode.insertBefore(div, node);
     node.parentNode.removeChild(node);
 
-    return new Player({
+    return new Vue({
       el: div,
-      data: () => ({
-        innerHTML: outerHTML,
-        src: audioUrl,
-        title: audioTitle,
-      }),
+      render(h) {
+        return h(Player, {
+          props: {
+            src: audioUrl,
+            title: audioTitle,
+            innerHTML: outerHTML,
+          },
+        });
+      },
     });
   });

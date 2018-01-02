@@ -67,6 +67,14 @@ script.
   const PLAYERS = [];
 
   export default {
+    props: ['src', 'title', 'innerHTML'],
+    data() {
+      return {
+        state: 'closed',
+        current: '00:00',
+        duration: '00:00',
+      };
+    },
     created() {
       PLAYERS.push(this);
 
@@ -76,16 +84,6 @@ script.
         this.open();
         this.play();
       }
-    },
-    data() {
-      return {
-        src: '',
-        title: 'Audio',
-        state: 'closed',
-        current: '00:00',
-        duration: '00:00',
-        innerHTML: '(inherited)',
-      };
     },
     methods: {
       toggle() {

@@ -47,7 +47,5 @@ block body
       #app
       each group in music
         h3.pull= group.label
-        ul
-          each track in group.tracks
-            li
-              a.btn.none(href=track.url data-is-music=track.title) <@svg "music">#[span= track.title]
+        each track in group.tracks
+          a.btn.none(href=track.url data-is-music=track.title) <@svg "music">#[span= track.title]
