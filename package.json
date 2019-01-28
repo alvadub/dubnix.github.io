@@ -15,8 +15,9 @@
       "**/index.js"
     ],
     "rename": [
-      "**/pages/**:{fullpath/2}",
-      "**/index.(css|js):{basedir}.{ext}"
+      "**/!(index).html:{basedir}/{name}/index.html",
+      "**/*.{svg,css,js}:{fullpath/2}",
+      "**/pages/**:{fullpath/2}"
     ],
     "ignoreFiles": [
       ".gitignore"
