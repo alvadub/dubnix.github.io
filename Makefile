@@ -9,6 +9,9 @@ dev: node_modules ## Lift dev environment for this service
 	@npm run dev
 
 dist: node_modules ## Final assets for production
+	@git subtree push --prefix build origin gh-pages
+
+old_dist:
 	@(git branch -D gh-pages || true) > /dev/null 2>&1
 	@git checkout --orphan gh-pages
 	@git merge $(branch)
@@ -18,9 +21,9 @@ dist: node_modules ## Final assets for production
 	@git checkout $(branch)
 
 clean: ## Remove all from node_modules/*
-	@rm -rf node_modules/* build
-	@(unlink .tarima || true) > /dev/null 2>&1
+	@((rm -r build > /dev/null 2>&1) && echo "Built artifacts were deleted") || echo "Artifacts already deleted"
+	@((unlink .tarima > /dev/null 2>&1) && echo "Cache file was deleted") || echo "Cache file already deleted"
 
 # Ensure dependencies are installed before
-node_modules: package*.json
+node_modules: package-lock.json
 	@npm i

@@ -2,22 +2,20 @@
   "name": "dubnix.io",
   "version": "1.0.0",
   "scripts": {
-    "dev": "tarima watch -L tarima-lr -p 3001 -de",
+    "dev": "tarima watch -p 3001 -de",
     "dist": "tarima -fqe production"
   },
   "tarima": {
     "from": "src",
     "public": "build",
     "filter": [
-      "!_*",
-      "!**/_*",
-      "!**/_*/**"
+      "!**/{components,layouts,lib}/**"
     ],
     "bundle": [
       "**/index.js"
     ],
     "rename": [
-      "**:{fullpath/1}",
+      "**/pages/**:{fullpath/2}",
       "**/index.(css|js):{basedir}.{ext}"
     ],
     "ignoreFiles": [
@@ -26,14 +24,10 @@
     "plugins": [
       "talavera"
     ],
-    "pluginOptions": {
-      "talavera": {
-        "dest": "images"
-      }
-    },
+    "devPlugins": [
+      "tarima-lr"
+    ],
     "bundleOptions": {
-      "bundleCache": true,
-      "entryCache": true,
       "extensions": {
         "js": "es6",
         "css": "less"
@@ -48,13 +42,13 @@
   "main": "index.js",
   "license": "MIT",
   "devDependencies": {
-    "buble": "^0.18.0",
-    "less": "^2.7.2",
-    "less-plugin-autoprefix": "^1.5.1",
+    "buble": "^0.19.6",
+    "less": "^3.9.0",
+    "less-plugin-autoprefix": "^2.0.0",
     "pug": "^2.0.0-beta11",
-    "rollup": "^0.53.2",
-    "talavera": "^0.5.0",
-    "tarima": "^4.0.3",
+    "rollup": "^1.1.2",
+    "talavera": "^0.6.2",
+    "tarima": "^4.2.6",
     "tarima-lr": "^0.4.1",
     "vue-template-compiler": "^2.2.6"
   }

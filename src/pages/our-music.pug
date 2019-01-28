@@ -1,0 +1,51 @@
+//-
+  ---
+  title: MUSIC
+  at: music
+  music:
+  - label: Classics
+    tracks:
+    - title: Chord
+      url: audio/dubnix_classics_chord.mp3
+    - title: Human being
+      url: audio/dubnix_classics_human-being.mp3
+    - title: Musical riot
+      url: audio/dubnix_classics_musical-riot.mp3
+  - label: Renewal
+    tracks:
+    - title: Riddim
+      url: audio/dubnix_renewal_riddim_pre.mp3
+    - title: Tears
+      url: audio/dubnix_renewal_tears_pre.mp3
+    - title: Guideline
+      url: audio/dubnix_renewal_guideline_pre.mp3
+    - title: Long terms
+      url: audio/dubnix_renewal_longterms_pre.mp3
+    - title: Risky conditions
+      url: audio/dubnix_renewal_risky-conditions.mp3
+    - title: Trailing acts
+      url: audio/dubnix_renewal_trailing-acts.mp3
+    - title: Western dread
+      url: audio/dubnix_renewal_western-dread.mp3
+  - label: Reboot
+    tracks:
+    - title: Melodical
+      url: audio/dubnix_reboot_melodical_pre.mp3
+    - title: Please stand by
+      url: audio/dubnix_reboot_please-stand-by_pre.mp3
+    - title: Dreamers
+      url: audio/dubnix_reboot_dreamers_pre.mp3
+    - title: Now
+      url: audio/dubnix_reboot_now_pre.mp3
+  ---
+
+extend ../layouts/default
+
+block body
+  .segment
+    .wrapper
+      #app
+      each group in music
+        h3.pull= group.label
+        each track in group.tracks
+          a.btn.none(href=track.url data-is-music=track.title) [![svg "music"]] #[span= track.title]
