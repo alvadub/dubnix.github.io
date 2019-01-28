@@ -1,0 +1,6 @@
+*.log
+.tarima
+.DS_Store
+build
+generated
+node_modules
