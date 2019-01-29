@@ -1,0 +1,197 @@
+*,
+*:after,
+*:before {
+  box-sizing: border-box;
+}
+* {
+  margin: 0;
+  padding: 0;
+  line-height: 1;
+  letter-spacing: 0;
+}
+body {
+  font-size: 140%;
+  font-family: 'Space Mono';
+}
+ul,
+ol {
+  list-style-position: inside;
+}
+svg,
+img,
+iframe {
+  max-width: 100%;
+}
+h2,
+h3,
+h4,
+h5,
+h6 {
+  line-height: 1.2;
+  font-family: Orbitron;
+  text-transform: uppercase;
+}
+p,
+li,
+a,
+button {
+  font-size: 90%;
+  line-height: 1.5;
+  font-family: 'Space Mono';
+}
+a,
+button {
+  position: relative;
+}
+a:focus,
+button:focus,
+a:active,
+button:active {
+  outline: none;
+  background-color: #39CCCC;
+  color: #FFFFFF !important;
+}
+a:focus svg,
+button:focus svg,
+a:active svg,
+button:active svg {
+  fill: #FFFFFF;
+}
+a {
+  color: #39CCCC;
+  transition: all 0.3s;
+}
+a:visited {
+  color: #39CCCC;
+}
+a:hover {
+  color: #0074D9;
+}
+a.here {
+  color: #F012BE;
+}
+blockquote {
+  padding: 1em;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  border-left: 8px solid #DDDDDD;
+}
+::-moz-selection {
+  text-shadow: none;
+  color: #AAAAAA;
+  background-color: #DDDDDD;
+}
+::selection {
+  text-shadow: none;
+  color: #AAAAAA;
+  background-color: #DDDDDD;
+}
+.container {
+  overflow: hidden;
+}
+.segment.slash {
+  position: relative;
+}
+.segment.slash:before {
+  -webkit-transform: skewY(-13deg);
+          transform: skewY(-13deg);
+  position: absolute;
+  z-index: -1;
+  content: ' ';
+  bottom: 0;
+  right: 0;
+  left: 0;
+  top: 0;
+}
+.segment.white:before {
+  background-color: #FFDC00;
+}
+.wrapper {
+  max-width: 500px;
+  padding: 16px;
+  margin: auto;
+}
+.bungee {
+  font-family: 'Bungee Shade';
+  position: relative;
+  text-align: center;
+  font-size: 64pt;
+}
+.nowrap {
+  white-space: nowrap;
+}
+.reset {
+  list-style: none;
+}
+.reset li ~ li {
+  margin-top: 8px;
+}
+.pull ~ .pull {
+  margin-top: 16px;
+}
+.pop {
+  padding-top: 32px;
+  padding-bottom: 32px;
+}
+.push {
+  margin-bottom: 64px;
+}
+.flex {
+  display: flex;
+  align-items: center;
+}
+.flex > .col ~ .col {
+  margin-left: 16px;
+}
+.btn {
+  border: 0;
+  color: #AAAAAA;
+  cursor: pointer;
+  transition: all 0.3s;
+  padding: 0 8px;
+  min-height: 32px;
+  background-color: #DDDDDD;
+  border-radius: 4px;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+}
+.btn svg {
+  fill: #AAAAAA;
+  width: 16px;
+  height: 16px;
+  transition: all 0.3s;
+}
+.btn svg ~ span {
+  margin-left: 8px;
+}
+.btn:visited {
+  color: #AAAAAA;
+}
+.btn:hover {
+  background-color: #0074D9;
+  color: #FFFFFF;
+}
+.btn:hover svg {
+  fill: #FFFFFF;
+}
+.none {
+  text-decoration: none;
+}
+.right {
+  float: right;
+}
+.Player--title,
+.Player--controls {
+  color: #AAAAAA;
+}
+.Player ~ .Player {
+  margin-top: 8px;
+}
+@media screen and (min-width: 500px) {
+  .grid {
+    display: flex;
+    align-items: center;
+  }
+  .grid > .col ~ .col {
+    margin-left: 16px;
+  }
+}
