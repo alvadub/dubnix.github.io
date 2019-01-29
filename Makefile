@@ -9,9 +9,6 @@ dev: node_modules ## Lift dev environment for this service
 	@npm run dev
 
 dist: node_modules ## Final assets for production
-	@git subtree push --prefix build origin gh-pages
-
-old_dist:
 	@(git branch -D gh-pages || true) > /dev/null 2>&1
 	@git checkout --orphan gh-pages
 	@git merge $(branch)
