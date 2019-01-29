@@ -10,14 +10,14 @@ help: Makefile
 dev: node_modules ## Lift dev environment for this service
 	@npm run dev
 
-dist: node_modules
+dist: node_modules ## Build artifact for production
 	@npm run dist
 
 clean: ## Remove all from node_modules/*
 	@((rm -r build > /dev/null 2>&1) && echo "Built artifacts were deleted") || echo "Artifacts already deleted"
 	@((unlink .tarima > /dev/null 2>&1) && echo "Cache file was deleted") || echo "Cache file already deleted"
 
-deploy: build ## Final assets for production
+deploy: build ## Publish to production
 	@(git branch -D $(target) || true) > /dev/null 2>&1
 	@git checkout --orphan $(target)
 	@git rm -r --cached . > /dev/null 2>&1
