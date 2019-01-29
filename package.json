@@ -2,6 +2,7 @@
   "name": "dubnix.io",
   "version": "1.0.0",
   "scripts": {
+    "lint": "eslint 'src/**/*.{js,pug}'",
     "dev": "tarima watch -p 3001 -de",
     "dist": "tarima -fqe production"
   },
@@ -9,14 +10,14 @@
     "from": "src",
     "public": "build",
     "filter": [
-      "!**/{components,layouts,lib}/**"
+      "!**/{lib,layouts}/**"
     ],
     "bundle": [
-      "**/index.js"
+      "**/scripts.js"
     ],
     "rename": [
       "**/!(index).html:{basedir}/{name}/index.html",
-      "**/*.{svg,css,js}:{fullpath/2}",
+      "**/*.{svg,css,js}:{fullpath/1}",
       "**/pages/**:{fullpath/2}"
     ],
     "ignoreFiles": [
@@ -44,12 +45,16 @@
   "license": "MIT",
   "devDependencies": {
     "buble": "^0.19.6",
+    "eslint": "^5.12.1",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.15.0",
+    "eslint-plugin-pug": "^1.1.1",
     "less": "^3.9.0",
     "less-plugin-autoprefix": "^2.0.0",
     "pug": "^2.0.0-beta11",
     "rollup": "^1.1.2",
     "talavera": "^0.6.2",
-    "tarima": "^4.2.6",
+    "tarima": "^4.2.7",
     "tarima-lr": "^0.4.1",
     "vue-template-compiler": "^2.2.6"
   }
