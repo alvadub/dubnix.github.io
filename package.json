@@ -4,7 +4,7 @@
   "scripts": {
     "lint": "eslint 'src/**/*.{js,pug}'",
     "dev": "tarima watch -p 3001 -de",
-    "dist": "tarima -fqe production"
+    "build": "tarima -fqe production"
   },
   "tarima": {
     "from": "src",
