@@ -10,8 +10,8 @@ help: Makefile
 dev: node_modules ## Lift dev environment for this service
 	@npm run dev
 
-build: node_modules
-	@npm run build
+dist: node_modules
+	@npm run dist
 
 clean: ## Remove all from node_modules/*
 	@((rm -r build > /dev/null 2>&1) && echo "Built artifacts were deleted") || echo "Artifacts already deleted"
