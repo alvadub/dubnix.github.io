@@ -1,5 +1,6 @@
 # defaults
-branch := master
+from := develop
+target := gh-pages
 message := Release: $(shell date)
 
 help: Makefile
@@ -8,14 +9,14 @@ help: Makefile
 dev: node_modules ## Lift dev environment for this service
 	@npm run dev
 
-dist: node_modules ## Final assets for production
-	@(git branch -D gh-pages || true) > /dev/null 2>&1
-	@git checkout --orphan gh-pages
-	@git merge $(branch)
+push: ## Final assets for production
+	@(git branch -D $(target) || true) > /dev/null 2>&1
+	@git checkout --orphan $(target)
+	@git merge $(from)
 	@cp -r build/* .
 	@git add . && git commit -m "$(message)"
-	@git push origin gh-pages -f
-	@git checkout $(branch)
+	@git push origin $(target) -f
+	@git checkout $(from)
 
 clean: ## Remove all from node_modules/*
 	@((rm -r build > /dev/null 2>&1) && echo "Built artifacts were deleted") || echo "Artifacts already deleted"
