@@ -9,6 +9,9 @@
   "tarima": {
     "from": "src",
     "public": "build",
+    "copy": {
+      "public": "."
+    },
     "filter": [
       "!**/{lib,layouts}/**"
     ],

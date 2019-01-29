@@ -1,0 +1,159 @@
+template
+  .Player(v-bind:class='state')
+    span(v-if='state === "closed"' v-html='innerHTML' v-on:click='open')
+    div(v-else)
+      .Player--title.flex
+        button.col.btn(v-on:click='close')
+          svg: use(xlink:href='#x-cancel')
+        span.col {{title}}
+      .Player--canvas(ref='player')
+      .Player--controls.flex
+        button.col.btn(v-on:click='stop' v-if='state !== "stopped"')
+          svg: use(xlink:href='#x-stop')
+        button.col.btn(v-on:click='toggle')
+          svg(v-if='state === "playing"'): use(xlink:href='#x-pause')
+          svg(v-if='state !== "playing"'): use(xlink:href='#x-play')
+        span.col {{current}}/{{duration}}
+
+script.
+  /* global ga, WaveSurfer */
+
+  const TITLE = document.title;
+
+  function formatTime(time) {
+    return [
+      Math.floor((time % 3600) / 60),
+      `00${Math.floor(time % 60)}`.slice(-2),
+    ].join(':');
+  };
+
+  function initPlayer() {
+    this.$refs.wavesurfer = WaveSurfer.create({
+      container: this.$refs.player,
+      barWidth: 3,
+      cursorWidth: 0,
+      waveColor: '#DDDDDD',
+      progressColor: '#01FF70',
+    });
+
+    this.$refs.wavesurfer.load(this.src);
+
+    this.$refs.wavesurfer.on('audioprocess', () => {
+      this.current = formatTime(this.$refs.wavesurfer.getCurrentTime());
+    });
+
+    this.$refs.wavesurfer.on('ready', () => {
+      this.duration = formatTime(this.$refs.wavesurfer.getDuration());
+      this.play();
+    });
+
+    this.$refs.wavesurfer.on('finish', () => {
+      doTrack('finish', this.title);
+
+      const offset = PLAYERS.indexOf(this);
+      const key = offset === PLAYERS.length - 1 ? 0 : offset + 1;
+
+      PLAYERS[key].open();
+      PLAYERS[key].play();
+    });
+  }
+
+  function doTrack(e, title) {
+    if (typeof ga !== 'undefined') {
+      ga('send', 'event', e, title);
+    }
+  }
+
+  const PLAYERS = [];
+
+  export default {
+    props: ['src', 'title', 'innerHTML'],
+    data() {
+      return {
+        state: 'closed',
+        current: '00:00',
+        duration: '00:00',
+      };
+    },
+    created() {
+      PLAYERS.push(this);
+
+      const track = location.search.split('play=').pop();
+
+      if (track && this.src.indexOf(track) > -1) {
+        this.open();
+        this.play();
+      }
+    },
+    methods: {
+      toggle() {
+        if (this.state !== 'playing') {
+          this.play();
+        } else {
+          this.pause();
+        }
+      },
+      pause() {
+        document.title = `${TITLE} - Playing "${this.title}" (paused)`;
+
+        if (this.$refs.wavesurfer) {
+          this.$refs.wavesurfer.pause();
+        }
+
+        this.state = 'paused';
+      },
+      stop() {
+        document.title = `${TITLE} - Playing "${this.title}" (stopped)`;
+
+        if (this.$refs.wavesurfer) {
+          this.$refs.wavesurfer.stop();
+        }
+
+        this.state = 'stopped';
+      },
+      play() {
+        doTrack('play', this.title);
+
+        document.title = `${TITLE} - Now playing "${this.title}"`;
+
+        history.replaceState(null, document.title, `/our-music?play=${this.src.split('/').pop()}`);
+
+        if (this.$refs.wavesurfer) {
+          this.$refs.wavesurfer.play();
+        }
+
+        this.state = 'playing';
+      },
+      open(e) {
+        if (e) {
+          e.preventDefault();
+
+          doTrack('open', this.title);
+        }
+
+        document.title = `${TITLE} - Loading "${this.title}"`;
+
+        setTimeout(initPlayer.bind(this));
+
+        PLAYERS.forEach((player) => {
+          if (player.state !== 'closed') {
+            player.close();
+          }
+        });
+
+        this.state = 'stopped';
+      },
+      close() {
+        document.title = TITLE;
+
+        history.replaceState(null, document.title, '/our-music');
+
+        if (this.$refs.wavesurfer) {
+          this.$refs.wavesurfer.destroy();
+          this.$refs.wavesurfer = null;
+        }
+
+        this.state = 'closed';
+      },
+    },
+  };
