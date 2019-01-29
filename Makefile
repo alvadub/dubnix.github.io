@@ -21,7 +21,7 @@ deploy: build ## Final assets for production
 	@(git branch -D $(target) || true) > /dev/null 2>&1
 	@git checkout --orphan $(target)
 	@git rm -r --cached . > /dev/null 2>&1
-	@echo "Makefile\nsrc\n*.json\n.*" >> .gitignore
+	@echo "Makefile\npublic\nsrc\n*.json\n.*" >> .gitignore
 	@cp -r build/* .
 	@git add . && git commit -m "$(message)"
 	@git push origin $(target) -f
