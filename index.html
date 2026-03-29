@@ -2,62 +2,73 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="DUB*NIX Sound System — Roots, Dub, Militant, Stepper. Sur-oriente de México, desde 2010.">
-<meta property="og:title" content="DUB*NIX Sound System">
-<meta property="og:description" content="Roots, Dub, Militant, Stepper. Sur-oriente de México, desde 2010.">
-<meta property="og:image" content="https://f4.bcbits.com/img/a2429078749_2.jpg">
-<title>DUB*NIX Sound System</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Oswald:wght@700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 :root{
-  --bg:#03070f;--bg2:#070e1c;--bg3:#0d1628;
-  --gold:#f5c842;--fire:#e85d20;--red:#c94030;
-  --text:#e8e0d0;--muted:rgba(232,224,208,0.4);
+  --bg:#080400;--bg2:#100800;--bg3:#1a0e00;
+  --red:#e01000;--gold:#f0a000;--green:#007030;
+  --green-hi:#00aa44;--amber:#d4700a;
+  --text:#f5e8c0;--muted:rgba(245,232,192,0.38);
   --mono:'Space Mono',monospace;--display:'Oswald',sans-serif;
-  --bc:rgba(245,200,66,0.07);
+  --bc:rgba(240,160,0,0.08);
 }
 html{font-size:18px;}
-body{background:var(--bg);color:var(--text);font-family:var(--mono);font-size:1rem;overflow-x:hidden;}
+body{background:var(--bg);color:var(--text);font-family:var(--mono);overflow-x:hidden;}
 
 .hero{position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;}
-.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 30%,#0d1e3a 0%,#03070f 70%);}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 90% 60% at 40% 40%,#1a0800 0%,#080400 75%);}
+
 .stars{position:absolute;inset:0;pointer-events:none;}
-.star{position:absolute;border-radius:50%;background:var(--gold);animation:tw var(--d,3s) ease-in-out infinite;}
-@keyframes tw{0%,100%{opacity:.8;}50%{opacity:.1;}}
-.scan{position:absolute;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(245,200,66,.2),transparent);animation:sc 10s linear infinite;pointer-events:none;}
+.star{position:absolute;border-radius:50%;animation:tw var(--d,3s) ease-in-out infinite;}
+@keyframes tw{0%,100%{opacity:.9;}50%{opacity:.05;}}
+
+.scan{position:absolute;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(240,160,0,.18),transparent);animation:sc 12s linear infinite;pointer-events:none;}
 @keyframes sc{from{top:-1px}to{top:100%}}
-.hero-title-bg{position:absolute;bottom:-80px;left:50%;transform:translateX(-50%);font-family:var(--display);font-weight:700;font-size:clamp(12rem,28vw,24rem);line-height:1;letter-spacing:-.5rem;color:rgba(245,200,66,0.04);white-space:nowrap;user-select:none;pointer-events:none;z-index:1;}
+
+.hero-title-bg{position:absolute;bottom:-60px;left:50%;transform:translateX(-50%);font-family:var(--display);font-weight:700;font-size:clamp(12rem,28vw,24rem);line-height:1;letter-spacing:-.5rem;color:rgba(224,16,0,0.035);white-space:nowrap;user-select:none;pointer-events:none;z-index:1;}
+
 .hero-inner{position:relative;z-index:5;padding:0 6% 4rem;display:flex;flex-direction:column;gap:1.4rem;}
+
+/* rasta 3-stripe divider */
+.tri{display:flex;width:5rem;gap:0;}
+.tri span{height:.28rem;flex:1;}
+.tri .r{background:var(--red);}
+.tri .y{background:var(--gold);}
+.tri .g{background:var(--green-hi);}
+
 .firma{display:flex;align-items:center;gap:.7rem;}
-.firma svg{width:1.1rem;height:1.1rem;}
-.firma-sep{width:1px;height:.9rem;background:rgba(245,200,66,0.2);}
-.firma-text{font-size:.6rem;letter-spacing:.3rem;color:rgba(245,200,66,0.35);}
-.hero-title{font-family:var(--display);font-weight:700;font-size:clamp(5.5rem,14vw,11rem);line-height:.88;letter-spacing:-.1rem;color:var(--gold);}
-.hero-title .star-glyph{color:var(--fire);font-size:.4em;vertical-align:super;}
-.hero-divider{width:5.5rem;height:.22rem;background:var(--fire);}
+.firma-sep{width:1px;height:.9rem;background:rgba(240,160,0,0.2);}
+.firma-text{font-size:.6rem;letter-spacing:.3rem;color:rgba(240,160,0,0.3);}
+
+.hero-title{font-family:var(--display);font-weight:700;font-size:clamp(5.5rem,14vw,11rem);line-height:.88;letter-spacing:-.1rem;}
+.hero-title .dub{color:var(--gold);}
+.hero-title .sep{color:var(--red);font-size:.38em;vertical-align:super;}
+.hero-title .nix{color:var(--green-hi);}
+
 .hero-sub{font-size:.83rem;letter-spacing:.22rem;color:var(--muted);max-width:30rem;line-height:2;text-transform:uppercase;}
 .hero-ctas{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:.5rem;}
 .btn{font-family:var(--mono);font-size:.6rem;letter-spacing:.22rem;padding:.8rem 1.6rem;cursor:pointer;transition:all .2s;text-decoration:none;display:inline-block;}
-.btn-outline{border:1px solid rgba(245,200,66,0.3);color:var(--gold);background:transparent;}
-.btn-outline:hover{border-color:var(--gold);background:rgba(245,200,66,0.06);}
-.btn-fill{background:var(--fire);color:#fff;border:1px solid var(--fire);}
-.btn-fill:hover{background:var(--red);border-color:var(--red);}
-.hero-scroll{position:absolute;bottom:1.5rem;right:6%;font-size:.55rem;letter-spacing:.25rem;color:rgba(245,200,66,0.2);writing-mode:vertical-rl;}
+.btn-r{background:var(--red);color:#fff;border:1px solid var(--red);}
+.btn-r:hover{background:#b80c00;}
+.btn-g{border:1px solid rgba(0,170,68,0.35);color:var(--green-hi);background:transparent;}
+.btn-g:hover{border-color:var(--green-hi);background:rgba(0,170,68,0.06);}
+.btn-y{border:1px solid rgba(240,160,0,0.3);color:var(--gold);background:transparent;}
+.btn-y:hover{border-color:var(--gold);background:rgba(240,160,0,0.06);}
+
+.hero-scroll{position:absolute;bottom:1.5rem;right:6%;font-size:.55rem;letter-spacing:.25rem;color:rgba(240,160,0,0.18);writing-mode:vertical-rl;}
 
 .section{padding:5.5rem 6%;border-top:1px solid var(--bc);}
-.sec-label{font-size:.6rem;letter-spacing:.35rem;color:var(--fire);margin-bottom:2.8rem;display:flex;align-items:center;gap:1rem;}
-.sec-label::after{content:'';flex:1;height:1px;background:rgba(232,93,32,0.2);max-width:14rem;}
+.sec-label{font-size:.6rem;letter-spacing:.35rem;color:var(--green-hi);margin-bottom:2.8rem;display:flex;align-items:center;gap:1rem;}
+.sec-label::after{content:'';flex:1;height:1px;background:rgba(0,170,68,0.12);max-width:14rem;}
+
 .prose{font-size:.85rem;line-height:2;color:var(--muted);max-width:38rem;}
 .prose strong{color:var(--text);}
 .prose p{margin-bottom:1.2rem;}
-.quote{border-left:.22rem solid var(--fire);padding:1.1rem 1.6rem;margin-top:2rem;font-size:.9rem;letter-spacing:.06rem;line-height:2;color:rgba(232,224,208,0.55);font-style:italic;}
+.quote{border-left:.22rem solid var(--green-hi);padding:1.1rem 1.6rem;margin-top:2rem;font-size:.88rem;letter-spacing:.05rem;line-height:2;color:rgba(245,232,192,0.45);font-style:italic;}
 
 .disco-grid-wrap{max-width:840px;margin-top:2.8rem;}
-.disco-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;background:rgba(245,200,66,0.04);}
+.disco-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;background:rgba(240,160,0,0.04);}
 @media(max-width:600px){.disco-grid{grid-template-columns:1fr;}}
 .album-card{background:var(--bg2);cursor:pointer;transition:background .15s;position:relative;display:flex;flex-direction:column;}
 .album-card:hover{background:var(--bg3);}
@@ -65,10 +76,9 @@ body{background:var(--bg);color:var(--text);font-family:var(--mono);font-size:1r
 .album-card:hover .album-cover img{transform:scale(1.04);}
 .album-cover{aspect-ratio:1;max-height:420px;overflow:hidden;position:relative;}
 .album-cover img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s;}
-.album-no-cover{width:100%;height:100%;background:var(--bg3);display:flex;align-items:center;justify-content:center;font-family:var(--display);font-size:.78rem;letter-spacing:.11rem;color:rgba(245,200,66,0.2);text-align:center;padding:1.2rem;}
-.album-overlay{position:absolute;inset:0;background:rgba(232,93,32,0.15);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .15s;}
-.album-overlay span{font-size:.55rem;letter-spacing:.25rem;color:var(--gold);border:1px solid rgba(245,200,66,0.5);padding:.55rem 1.1rem;background:rgba(3,7,15,0.8);}
-.album-year{position:absolute;top:.6rem;left:.6rem;font-size:.55rem;letter-spacing:.11rem;background:var(--fire);color:#fff;padding:.22rem .55rem;}
+.album-overlay{position:absolute;inset:0;background:rgba(0,112,48,0.18);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .15s;}
+.album-overlay span{font-size:.55rem;letter-spacing:.25rem;color:var(--gold);border:1px solid rgba(240,160,0,0.5);padding:.55rem 1.1rem;background:rgba(8,4,0,0.88);}
+.album-year{position:absolute;top:.6rem;left:.6rem;font-size:.55rem;letter-spacing:.11rem;background:var(--green);color:#f5e8c0;padding:.22rem .55rem;}
 .album-info{padding:1rem 1.1rem;}
 .album-title{font-family:var(--display);font-size:.95rem;letter-spacing:.11rem;color:var(--gold);margin-bottom:.35rem;line-height:1.2;}
 .album-sub{font-size:.6rem;letter-spacing:.06rem;color:var(--muted);}
@@ -77,27 +87,29 @@ body{background:var(--bg);color:var(--text);font-family:var(--mono);font-size:1r
 .tracklist.open{display:block;}
 .tl-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:2.2rem;padding-bottom:1.4rem;border-bottom:1px solid var(--bc);}
 .tl-title{font-family:var(--display);font-size:1.9rem;letter-spacing:.17rem;color:var(--gold);}
-.tl-close{background:none;border:1px solid rgba(232,224,208,0.1);cursor:pointer;color:var(--muted);font-family:var(--mono);font-size:.6rem;letter-spacing:.17rem;padding:.55rem 1rem;transition:all .15s;}
-.tl-close:hover{color:var(--text);border-color:rgba(232,224,208,0.2);}
+.tl-close{background:none;border:1px solid rgba(245,232,192,0.1);cursor:pointer;color:var(--muted);font-family:var(--mono);font-size:.6rem;letter-spacing:.17rem;padding:.55rem 1rem;transition:all .15s;}
+.tl-close:hover{color:var(--text);}
 .tl-player{margin-bottom:1.6rem;}
 .tl-player iframe{border:0;width:100%;height:120px;}
 .tracks{display:grid;grid-template-columns:repeat(auto-fill,minmax(17rem,1fr));gap:0 2.2rem;}
-.track{display:flex;align-items:baseline;padding:.45rem 0;border-bottom:1px solid rgba(245,200,66,0.05);gap:.7rem;}
-.track-num{font-size:.6rem;color:rgba(245,200,66,0.25);flex-shrink:0;width:1.3rem;}
-.track-name{flex:1;font-size:.72rem;color:rgba(232,224,208,0.75);letter-spacing:.03rem;}
-.track-style{font-size:.55rem;letter-spacing:.11rem;color:var(--fire);opacity:.65;flex-shrink:0;}
-.track-dur{font-size:.6rem;color:rgba(232,224,208,.2);flex-shrink:0;}
+.track{display:flex;align-items:baseline;padding:.45rem 0;border-bottom:1px solid rgba(240,160,0,0.05);gap:.7rem;}
+.track-num{font-size:.6rem;color:rgba(240,160,0,0.2);flex-shrink:0;width:1.3rem;}
+.track-name{flex:1;font-size:.72rem;color:rgba(245,232,192,0.7);}
+.track-style{font-size:.55rem;letter-spacing:.11rem;color:var(--green-hi);opacity:.6;flex-shrink:0;}
+.track-dur{font-size:.6rem;color:rgba(245,232,192,.18);flex-shrink:0;}
 
-.yt-wrap{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;}
+.yt-wrap{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;margin-top:2.8rem;}
 .yt-wrap iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0;}
 
 .platforms{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:2rem;}
-.plat{font-size:.6rem;letter-spacing:.17rem;padding:.7rem 1.3rem;border:1px solid rgba(245,200,66,0.15);color:rgba(232,224,208,.45);background:transparent;transition:all .2s;text-decoration:none;display:inline-block;}
-.plat:hover{color:var(--gold);border-color:rgba(245,200,66,.4);background:rgba(245,200,66,.04);}
+.plat{font-size:.6rem;letter-spacing:.17rem;padding:.7rem 1.3rem;border:1px solid rgba(240,160,0,0.12);color:rgba(245,232,192,.4);background:transparent;transition:all .2s;text-decoration:none;display:inline-block;}
+.plat:hover{color:var(--gold);border-color:rgba(240,160,0,.35);background:rgba(240,160,0,.04);}
 
 .site-footer{padding:2.2rem 6%;border-top:1px solid var(--bc);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.7rem;}
-.f-name{font-family:var(--display);font-size:1.55rem;letter-spacing:.22rem;color:rgba(245,200,66,0.08);}
-.f-copy{font-size:.6rem;letter-spacing:.17rem;color:rgba(232,224,208,.1);}
+.f-name{font-family:var(--display);font-size:1.55rem;letter-spacing:.22rem;color:rgba(240,160,0,0.06);}
+.f-copy{font-size:.6rem;letter-spacing:.17rem;color:rgba(245,232,192,.08);}
+.rasta-foot{display:flex;height:3px;}
+.rasta-foot span{flex:1;}
 </style>
 </head>
 <body>
@@ -110,32 +122,35 @@ body{background:var(--bg);color:var(--text);font-family:var(--mono);font-size:1r
   <div class="hero-title-bg">DUB*NIX</div>
   <div class="hero-inner">
     <div class="firma">
-      <svg viewBox="0 0 20 20" width="20" height="20"><polygon points="10,2 12,8 18,8 13,12 15,18 10,14 5,18 7,12 2,8 8,8" fill="#e85d20" opacity=".7"/></svg>
+      <div class="tri"><span class="r"></span><span class="y"></span><span class="g"></span></div>
       <div class="firma-sep"></div>
-      <span class="firma-text">SOUND SYSTEM &middot; CDMX &middot; DESDE 2010</span>
+      <span class="firma-text">SOUND SYSTEM · CDMX · DESDE 2010</span>
     </div>
-    <div class="hero-title">DUB<span class="star-glyph">&#10022;</span><br>NIX</div>
-    <div class="hero-divider"></div>
-    <div class="hero-sub">Roots &middot; Dub &middot; Militant &middot; Stepper<br>Sur-oriente de M&eacute;xico &mdash; Do it yourself</div>
+    <div class="hero-title">
+      <span class="dub">DUB</span><span class="sep">✦</span><br>
+      <span class="nix">NIX</span>
+    </div>
+    <div class="tri"><span class="r"></span><span class="y"></span><span class="g"></span></div>
+    <div class="hero-sub">Roots · Dub · Militant · Stepper<br>Sur-oriente de México — Do it yourself</div>
     <div class="hero-ctas">
-      <a href="#disco" class="btn btn-fill">DISCOGRAF&Iacute;A</a>
-      <a href="https://dubnix.bandcamp.com" target="_blank" rel="noopener" class="btn btn-outline">BANDCAMP</a>
-      <a href="mailto:sotelocarloswise@gmail.com" class="btn btn-outline">CONTACTO</a>
+      <a href="#disco" class="btn btn-r">DISCOGRAFÍA</a>
+      <a href="https://dubnix.bandcamp.com" target="_blank" class="btn btn-y">BANDCAMP</a>
+      <a href="mailto:sotelocarloswise@gmail.com" class="btn btn-g">CONTACTO</a>
     </div>
   </div>
   <div class="hero-scroll">SCROLL</div>
 </section>
 
 <section class="section">
-  <div class="sec-label">01 &mdash; DE QU&Eacute; SE TRATA</div>
+  <div class="sec-label">01 — DE QUÉ SE TRATA</div>
   <div class="prose">
-    <p><strong>DUB*NIX</strong> es un sound system nacido en 2010 en el sur-oriente de la Ciudad de M&eacute;xico. Reggae, dub, roots &mdash; construido desde adentro, sin atajos, con lo que hab&iacute;a. Hazlo t&uacute; mismo.</p>
+    <p><strong>DUB*NIX</strong> es un sound system nacido en 2010 en el sur-oriente de la Ciudad de México. Reggae, dub, roots — construido desde adentro, sin atajos, con lo que había. Hazlo tú mismo.</p>
   </div>
-  <div class="quote">&ldquo;Our main concern was, and still it is, focus on Open Source technologies and free software. Do it yourself!&rdquo;</div>
+  <div class="quote">"Our main concern was, and still it is, focus on Open Source technologies and free software. Do it yourself!"</div>
 </section>
 
 <section class="section" id="disco">
-  <div class="sec-label">02 &mdash; DISCOGRAF&Iacute;A</div>
+  <div class="sec-label">02 — DISCOGRAFÍA</div>
   <div class="disco-grid-wrap">
     <div class="disco-grid" id="disco-grid"></div>
   </div>
@@ -143,70 +158,49 @@ body{background:var(--bg);color:var(--text);font-family:var(--mono);font-size:1r
 </section>
 
 <section class="section">
-  <div class="sec-label">03 &mdash; EN VIVO</div>
+  <div class="sec-label">03 — EN VIVO</div>
   <div class="yt-wrap">
     <iframe width="560" height="315" src="https://www.youtube.com/embed/1ofH43SPSp0?si=oPBuInmKOjXiByaj" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
   </div>
 </section>
 
 <section class="section">
-  <div class="sec-label">04 &mdash; ESCUCHAR</div>
-  <div class="prose"><p>La m&uacute;sica est&aacute; disponible en todas las plataformas. Para descarga de alta calidad, Bandcamp.</p></div>
+  <div class="sec-label">04 — ESCUCHAR</div>
+  <div class="prose"><p>La música está disponible en todas las plataformas. Para descarga de alta calidad, Bandcamp.</p></div>
   <div class="platforms">
-    <a href="https://dubnix.bandcamp.com" target="_blank" rel="noopener" class="plat">BANDCAMP</a>
-    <a href="https://soundcloud.com/dubnix" target="_blank" rel="noopener" class="plat">SOUNDCLOUD</a>
-    <a href="https://www.youtube.com/@dubnix" target="_blank" rel="noopener" class="plat">YOUTUBE</a>
-    <a href="https://www.facebook.com/dubnix" target="_blank" rel="noopener" class="plat">FACEBOOK</a>
-    <a href="https://www.instagram.com/dubnix" target="_blank" rel="noopener" class="plat">INSTAGRAM</a>
+    <a href="https://dubnix.bandcamp.com" target="_blank" class="plat">BANDCAMP</a>
+    <a href="https://soundcloud.com/dubnix" target="_blank" class="plat">SOUNDCLOUD</a>
+    <a href="https://www.youtube.com/@dubnix" target="_blank" class="plat">YOUTUBE</a>
+    <a href="https://www.facebook.com/dubnix" target="_blank" class="plat">FACEBOOK</a>
+    <a href="https://www.instagram.com/dubnix" target="_blank" class="plat">INSTAGRAM</a>
   </div>
 </section>
 
 <footer class="site-footer">
   <div class="f-name">DUB*NIX</div>
-  <div class="f-copy">M&Eacute;XICO CITY &middot; SOUND SYSTEM &middot; DESDE 2010</div>
+  <div class="f-copy">MÉXICO CITY · SOUND SYSTEM · DESDE 2010</div>
 </footer>
+<div class="rasta-foot"><span style="background:#e01000"></span><span style="background:#f0a000"></span><span style="background:#00aa44"></span></div>
 
 <script>
 const albums=[
   {id:'world-wise-dub',year:'2025',albumId:1804019208,cover:'https://f4.bcbits.com/img/a2429078749_2.jpg',title:'WORLD WISE DUB',url:'https://dubnix.bandcamp.com/album/world-wise-dub',tracks:[{n:'Past & Future',s:'Rockers',d:'03:12'},{n:'Real Deal',s:'Dub-Wise',d:'02:48'},{n:'Divine Protection',s:'Militant',d:'02:25'},{n:'Spiritual Vibes',s:'Militant',d:'03:14'},{n:'Nix Return',s:'Militant',d:'03:10'},{n:'Step Forward',s:'Militant',d:'03:22'},{n:'Path of the Lion',s:'Militant',d:'02:40'},{n:'Dont Forget',s:'Militant',d:'03:07'},{n:'Hard Roots',s:'Militant',d:'03:12'},{n:'Dub Light',s:'Militant',d:'02:46'},{n:'New Generation',s:'Militant',d:'03:03'},{n:'Imperial Lion',s:'Militant',d:'03:01'},{n:'Return to Africa',s:'Stepper',d:'03:12'},{n:'More Blessings',s:'Stepper',d:'02:51'},{n:'Altas Vibras',s:'Stepper',d:'02:58'},{n:'Reverence',s:'Stepper',d:'03:12'},{n:'Call in Dub',s:'Stepper',d:'02:51'},{n:'Go to Zion',s:'Stepper',d:'03:05'},{n:'Revolution',s:'Stepper',d:'02:51'},{n:'Early Morning Dub',s:'Stepper',d:'02:46'},{n:'Universal Dub',s:'Stepper',d:'02:50'},{n:'Introspection',s:'Stepper',d:'03:12'},{n:'Dub Them',s:'Stepper',d:'03:12'},{n:'The Creation',s:'Mantra',d:'03:04'},{n:'You Are',s:'Original Nix',d:'02:53'},{n:'Give Thanks',s:'Original Nix',d:'02:51'}]},
-  {id:'natural-dub',year:'2024',albumId:4205466695,cover:'https://f4.bcbits.com/img/a4205466695_2.jpg',title:'NATURAL ESSENCE IN DUB',url:'https://dubnix.bandcamp.com/album/natural-essence-in-dub',tracks:[{n:'Merci',s:'',d:'03:02'},{n:'Rock in Deep',s:'',d:'03:14'},{n:'Dub Uno',s:'',d:'03:09'},{n:'Gran Paso',s:'',d:'03:16'},{n:'Coraz\u00f3n de Guerrero',s:'',d:'03:05'},{n:'Danza Espiritual',s:'',d:'03:01'},{n:'Bajo la Lluvia',s:'',d:'03:04'},{n:'Meditaci\u00f3n en Zion',s:'',d:'03:01'},{n:'Militancia',s:'',d:'02:55'},{n:'Stepper Nix',s:'',d:'02:51'},{n:'Fullness Vibes',s:'',d:'02:48'}]},
+  {id:'natural-dub',year:'2024',albumId:4205466695,cover:'https://f4.bcbits.com/img/a4205466695_2.jpg',title:'NATURAL ESSENCE IN DUB',url:'https://dubnix.bandcamp.com/album/natural-essence-in-dub',tracks:[{n:'Merci',s:'',d:'03:02'},{n:'Rock in Deep',s:'',d:'03:14'},{n:'Dub Uno',s:'',d:'03:09'},{n:'Gran Paso',s:'',d:'03:16'},{n:'Corazón de Guerrero',s:'',d:'03:05'},{n:'Danza Espiritual',s:'',d:'03:01'},{n:'Bajo la Lluvia',s:'',d:'03:04'},{n:'Meditación en Zion',s:'',d:'03:01'},{n:'Militancia',s:'',d:'02:55'},{n:'Stepper Nix',s:'',d:'02:51'},{n:'Fullness Vibes',s:'',d:'02:48'}]},
   {id:'natural-roots',year:'2024',albumId:3846925011,cover:'https://f4.bcbits.com/img/a3846925011_2.jpg',title:'NATURAL ESSENCE IN ROOTS',url:'https://dubnix.bandcamp.com/album/natural-essence-in-roots',tracks:[]},
   {id:'rockers-stepper',year:'2024',albumId:1459526909,cover:'https://f4.bcbits.com/img/a1459526909_2.jpg',title:'THE ROCKERS STEPPER SOUND',url:'https://dubnix.bandcamp.com/album/the-rockers-stepper-sound',tracks:[]},
 ];
 
-const grid=document.getElementById('disco-grid');
-const tl=document.getElementById('tracklist');
+const grid=document.getElementById('disco-grid'),tl=document.getElementById('tracklist');
 let openId=null;
-
 albums.forEach(album=>{
   const card=document.createElement('div');
   card.className='album-card';
-  card.innerHTML=`
-    <div class="album-cover">
-      <img src="${album.cover}" alt="${album.title}" loading="lazy" onerror="this.outerHTML='<div class=album-no-cover>${album.title}</div>'">
-      <span class="album-year">${album.year}</span>
-      <div class="album-overlay"><span>ESCUCHAR</span></div>
-    </div>
-    <div class="album-info">
-      <div class="album-title">${album.title}</div>
-      <div class="album-sub">${album.tracks.length?album.tracks.length+' TRACKS':'VER EN BANDCAMP \u2197'}</div>
-    </div>
-  `;
+  card.innerHTML=`<div class="album-cover"><img src="${album.cover}" alt="${album.title}" loading="lazy" onerror="this.outerHTML='<div class=album-no-cover>${album.title}</div>'"><span class="album-year">${album.year}</span><div class="album-overlay"><span>ESCUCHAR</span></div></div><div class="album-info"><div class="album-title">${album.title}</div><div class="album-sub">${album.tracks.length?album.tracks.length+' TRACKS':'VER EN BANDCAMP ↗'}</div></div>`;
   card.addEventListener('click',()=>{
     if(openId===album.id&&tl.classList.contains('open')){tl.classList.remove('open');openId=null;return;}
     openId=album.id;
-    const src=`https://bandcamp.com/EmbeddedPlayer/album=${album.albumId}/size=small/bgcol=03070f/linkcol=f5c842/artwork=none/transparent=true/`;
-    tl.innerHTML=`
-      <div class="tl-header">
-        <div class="tl-title">${album.title}</div>
-        <button class="tl-close" id="tl-close">\u2715 CERRAR</button>
-      </div>
-      <div class="tl-player"><iframe src="${src}" seamless></iframe></div>
-      ${album.tracks.length
-        ?`<div class="tracks">${album.tracks.map((t,i)=>`<div class="track"><span class="track-num">${String(i+1).padStart(2,'0')}</span><span class="track-name">${t.n}</span>${t.s?`<span class="track-style">${t.s.toUpperCase()}</span>`:''}<span class="track-dur">${t.d}</span></div>`).join('')}</div>`
-        :`<p style="font-size:.72rem;letter-spacing:.11rem;color:rgba(232,224,208,.3);">VER TRACKLIST EN <a href="${album.url}" target="_blank" rel="noopener" style="color:#f5c842;border-bottom:1px solid rgba(245,200,66,.3);">BANDCAMP \u2197</a></p>`
-      }
-    `;
+    const src=`https://bandcamp.com/EmbeddedPlayer/album=${album.albumId}/size=small/bgcol=080400/linkcol=f0a000/artwork=none/transparent=true/`;
+    tl.innerHTML=`<div class="tl-header"><div class="tl-title">${album.title}</div><button class="tl-close" id="tl-close">✕ CERRAR</button></div><div class="tl-player"><iframe src="${src}" seamless></iframe></div>${album.tracks.length?`<div class="tracks">${album.tracks.map((t,i)=>`<div class="track"><span class="track-num">${String(i+1).padStart(2,'0')}</span><span class="track-name">${t.n}</span>${t.s?`<span class="track-style">${t.s.toUpperCase()}</span>`:''}<span class="track-dur">${t.d}</span></div>`).join('')}</div>`:`<p style="font-size:.72rem;letter-spacing:.11rem;color:rgba(245,232,192,.3);">VER EN <a href="${album.url}" target="_blank" style="color:#f0a000">BANDCAMP ↗</a></p>`}`;
     tl.classList.add('open');
     document.getElementById('tl-close').addEventListener('click',()=>{tl.classList.remove('open');openId=null;});
     setTimeout(()=>tl.scrollIntoView({behavior:'smooth',block:'start'}),100);
@@ -215,39 +209,27 @@ albums.forEach(album=>{
 });
 
 const starsEl=document.getElementById('stars');
-for(let i=0;i<80;i++){
+for(let i=0;i<60;i++){
   const s=document.createElement('div');
   s.className='star';
-  const sz=Math.random()*2+.5;
-  s.style.cssText=`width:${sz}px;height:${sz}px;left:${Math.random()*100}%;top:${Math.random()*100}%;--d:${2+Math.random()*5}s;animation-delay:${Math.random()*5}s;opacity:${.1+Math.random()*.4};`;
+  const sz=Math.random()*1.8+.4;
+  const cols=['#f0a000','#e01000','#00aa44','#f5e8c0'];
+  s.style.cssText=`width:${sz}px;height:${sz}px;left:${Math.random()*100}%;top:${Math.random()*100}%;background:${cols[Math.floor(Math.random()*cols.length)]};--d:${2+Math.random()*5}s;animation-delay:${Math.random()*5}s;opacity:${.04+Math.random()*.2};`;
   starsEl.appendChild(s);
 }
 
 const canvas=document.getElementById('waveCanvas'),ctx=canvas.getContext('2d'),scene=document.getElementById('scene');
-let W,H,t=0,mx=.5,my=.5,tx=.5,ty=.5;
+let W,H,t=0;
 function resize(){W=canvas.width=scene.clientWidth;H=canvas.height=scene.clientHeight;}
 resize();window.addEventListener('resize',resize);
-scene.addEventListener('mousemove',e=>{const r=scene.getBoundingClientRect();tx=(e.clientX-r.left)/r.width;ty=(e.clientY-r.top)/r.height;});
 const waves=[
-  {s:.2,a:30,f:.008,al:.06,w:2,o:0,c:'#e85d20'},
-  {s:.35,a:18,f:.014,al:.04,w:1.5,o:60,c:'#f5c842'},
-  {s:.15,a:44,f:.005,al:.03,w:2.5,o:-50,c:'#e85d20'},
-  {s:.5,a:12,f:.022,al:.03,w:1,o:30,c:'#c94030'},
+  {s:.18,a:32,f:.007,al:.055,w:2.5,o:0,c:'#e01000'},
+  {s:.28,a:20,f:.013,al:.04,w:2,o:55,c:'#f0a000'},
+  {s:.12,a:42,f:.005,al:.03,w:3,o:-48,c:'#007030'},
+  {s:.42,a:12,f:.02,al:.025,w:1.5,o:28,c:'#00aa44'},
 ];
-function draw(){
-  ctx.clearRect(0,0,W,H);
-  const cy=H*.62;
-  waves.forEach(l=>{
-    ctx.beginPath();ctx.strokeStyle=l.c;ctx.globalAlpha=l.al;ctx.lineWidth=l.w;
-    for(let x=0;x<=W;x+=2){
-      const y=cy+l.o+Math.sin(x*l.f+t*l.s)*l.a+Math.sin(x*l.f*1.7+t*l.s*.6)*l.a*.3;
-      x===0?ctx.moveTo(x,y):ctx.lineTo(x,y);
-    }
-    ctx.stroke();
-  });
-  ctx.globalAlpha=1;
-}
-function loop(){t+=.007;mx+=(tx-mx)*.04;my+=(ty-my)*.04;draw();requestAnimationFrame(loop);}
+function draw(){ctx.clearRect(0,0,W,H);const cy=H*.65;waves.forEach(l=>{ctx.beginPath();ctx.strokeStyle=l.c;ctx.globalAlpha=l.al;ctx.lineWidth=l.w;for(let x=0;x<=W;x+=2){const y=cy+l.o+Math.sin(x*l.f+t*l.s)*l.a+Math.sin(x*l.f*1.6+t*l.s*.5)*l.a*.4;x===0?ctx.moveTo(x,y):ctx.lineTo(x,y);}ctx.stroke();});ctx.globalAlpha=1;}
+function loop(){t+=.006;draw();requestAnimationFrame(loop);}
 loop();
 </script>
 </body>
